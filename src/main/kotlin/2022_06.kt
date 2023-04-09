@@ -5,18 +5,17 @@ fun main() {
     val input = File("src/main/kotlin/data_2022_06.txt").readText()
 
     /** Part 1 */
-    println(input.findStartMarker(4))
+    println(input.getStartIndex(4))
 
     /** Part 2 */
-    println(input.findStartMarker(14))
+    println(input.getStartIndex(14))
 
 }
 
-/** Extension function */
-private fun String.findStartMarker(startMarkerSize: Int): Int =
+/** Extension function - withIndex returns value & index - get last index+1 where toSet-size = input*/
+
+private fun String.getStartIndex(sequenceSize: Int): Int =
     withIndex()
-        .windowed(startMarkerSize, 1)
-        .first { window ->
-            window.map { it.value }.toSet().size == startMarkerSize
-        }
+        .windowed(sequenceSize, 1)
+        .first { window -> window.map { it.value }.toSet().size == sequenceSize }
         .last().index +1
