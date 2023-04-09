@@ -2,14 +2,15 @@ import java.io.File
 
 fun main() {
 
-    val input = File("src/main/kotlin/data_2022_07.txt").readLines()
-
-    val rootDirectory: Directory = parseInput(input)
+    val data = File("src/main/kotlin/data_2022_07.txt").readLines()
+    val rootDirectory: Directory = parseInput(data)
 
     /** Part 1 */
     println(rootDirectory.find { it.size <= 100_000 }.sumOf { it.size })
 
     /** Part 2 */
+    val neededSpace = rootDirectory.size + 30_000_000 - 70_000_000
+    println(rootDirectory.find { it.size >= neededSpace }.minBy { it.size }.size)
 
 }
 
